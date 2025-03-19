@@ -45,6 +45,14 @@ public class Matrix {
         this.matrixElements[i][j] = value;
     }
 
+    public int getRows() {
+        return this.rows;
+    }
+
+    public int getColumns(){
+        return this.columns;
+    }
+
     public void show(){
         for(int i = 0; i < rows; i++){
             for (int j= 0; j < columns; j++){
