@@ -3,11 +3,11 @@ import java.util.Arrays;
 public class Matrix {
     private int rows;
     private int columns;
-    private float[] elements;
+    private double[] elements;
     private int indexElements = 0;
-    protected float[][] matrixElements;
+    protected double[][] matrixElements;
 
-    Matrix(int rows, int columns, float[] elements){
+    Matrix(int rows, int columns, double[] elements){
         this.rows = rows;
         this.columns = columns;
         if(elements.length <= (rows * columns)){
@@ -21,10 +21,10 @@ public class Matrix {
         this.matrixElements = this.generateArrayMatrix();
     }
 
-    private float[][] generateArrayMatrix(){
-        float[][] array = new float[this.rows][];
+    private double[][] generateArrayMatrix(){
+        double[][] array = new double[this.rows][];
         for(int i = 0; i < this.rows; i++){
-            float[] columnsElements = new float[this.columns];
+            double[] columnsElements = new double[this.columns];
             for(int j = 0; j < this.columns; j++){
                 columnsElements[j] = elements[indexElements];
                 indexElements++;
@@ -37,7 +37,7 @@ public class Matrix {
     }
 
 
-    public float get(int i, int j){
+    public double get(int i, int j){
         return this.matrixElements[i][j];
     }
 
