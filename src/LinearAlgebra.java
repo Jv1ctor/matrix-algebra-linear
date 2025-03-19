@@ -2,7 +2,7 @@ public class LinearAlgebra {
 
     // Metodo para transpor uma matriz. A transposição troca as linhas pelas colunas.
     public static Matrix transpose(Matrix a) {
-        Matrix result = new Matrix(a.getColumns(), a.getRows(), new double[a.getColumns() * a.getRows()]);
+        Matrix result = new Matrix(a.getColumns(), a.getRows(), new float [a.getColumns() * a.getRows()]);
 
         // Percorre a matriz e troca os índices para fazer a transposição
         for (int i = 0; i < a.getRows(); i++) {
@@ -20,7 +20,7 @@ public class LinearAlgebra {
             return null; // Ou qualquer outro valor que indique erro
         }
 
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[a.getRows() * a.getColumns()]);
+        Matrix result = new Matrix(a.getRows(), a.getColumns(), new float [a.getRows() * a.getColumns()]);
 
         // Percorre cada elemento da matriz e soma os valores correspondentes
         for (int i = 0; i < a.getRows(); i++) {
@@ -29,5 +29,9 @@ public class LinearAlgebra {
             }
         }
         return result;
+
+
+    
+    
     }
 }
