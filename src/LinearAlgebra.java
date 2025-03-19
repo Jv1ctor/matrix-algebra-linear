@@ -12,11 +12,11 @@ public class LinearAlgebra {
         }
         return result;
     }
-
-    public static Vector transpose(Vector a) {
-        return new Vector(a.getDim(), a.getElements());
-    }
-
+//
+//    public static Vector transpose(Vector a) {
+//        return new Vector(a.getDim(), a.getElements());
+//    }
+//
 
     // Metodo para somar duas matrizes.
     public static Matrix sum(Matrix a, Matrix b) {
@@ -25,7 +25,7 @@ public class LinearAlgebra {
             return null; // Ou qualquer outro valor que indique erro
         }
 
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[] [a.getRows() * a.getColumns();
+        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[a.getRows() * a.getColumns()]);
 
         // Percorre cada elemento da matriz e soma os valores correspondentes
         for (int i = 0; i < a.getRows(); i++) {
