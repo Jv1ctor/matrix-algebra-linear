@@ -16,6 +16,8 @@ public class Vector {
         return this.dim;
     }
 
+    public double[] getElements() { return this.elements; }
+
     public double get(int i) {
         return elements[i];
     }
