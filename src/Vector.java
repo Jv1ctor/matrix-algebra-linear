@@ -12,6 +12,10 @@ public class Vector {
         this.elements = elements;
     }
 
+    public int getDim(){
+        return this.dim;
+    }
+
     public double get(int i) {
         return elements[i];
     }

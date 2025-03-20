@@ -41,8 +41,16 @@ public class Matrix {
         return this.matrixElements[i][j];
     }
 
-    public void set(int i, int j, float value){
+    public void set(int i, int j, double value){
         this.matrixElements[i][j] = value;
+    }
+
+    public int getRows() {
+        return this.rows;
+    }
+
+    public int getColumns(){
+        return this.columns;
     }
 
     public void show(){
