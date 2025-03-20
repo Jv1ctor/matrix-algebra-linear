@@ -1,4 +1,4 @@
-public class LinearAlgebra {
+public class LinearAlgebra{
 
     // Metodo para transpor uma matriz. A transposição troca as linhas pelas colunas.
     public static Matrix transpose(Matrix a) {
@@ -35,6 +35,75 @@ public class LinearAlgebra {
         }
         return result;
     }
+
+
+
+    public static Object times(Object a, Object b){
+        return switch (a) {
+            case Matrix matrix when b instanceof Matrix -> timesMatrixMatrix(matrix, (Matrix) b);
+            case Double v -> timesScalar((double) a, b);
+            case Vector vector when b instanceof Vector -> timesVectorVector(vector, (Vector) b);
+            case null, default -> throw new IllegalArgumentException("Tipos incompativeis para multiplicação");
+        };
+    }
+
+    private static Vector timesVectorVector(Vector a, Vector b){
+        if (a.getDim() != b.getDim()) {
+            throw new IllegalArgumentException("Os Vetores devem ter o mesmo tamanho.");
+        }
+
+        int dim = a.getDim();
+        Vector result = new Vector(dim, new double[dim]);
+        for (int i = 0; i < dim; i++){
+            result.set(i, a.get(i) * b.get(i));
+        }
+
+        return result;
+    }
+
+     private static Matrix timesMatrixMatrix(Matrix a, Matrix b){
+         if (a.getRows() != b.getRows() || a.getColumns() != b.getColumns()) {
+             throw new IllegalArgumentException("As matrizes devem ter o mesmo tamanho.");
+         }
+         int rows = a.getRows();
+         int cols = a.getColumns();
+         Matrix result = new Matrix(rows, cols, new double[rows * cols]);
+         for (int i = 0; i < rows; i++) {
+             for (int j = 0; j < cols; j++) {
+                 result.set(i, j, a.get(i, j) * b.get(i, j));
+             }
+         }
+
+         return result;
+     }
+
+
+    private static Object timesScalar(double scalar, Object obj){
+        if(obj instanceof Matrix matrix){
+            int rows = matrix.getRows();
+            int cols = matrix.getColumns();
+            Matrix result = new Matrix(rows, cols, new double[rows * cols]);
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < cols; j++) {
+                    result.set(i, j, scalar * matrix.get(i, j));
+                }
+            }
+
+
+           return result;
+        }else if( obj instanceof Vector vector){
+            int dim = vector.getDim();
+            Vector result = new Vector(dim, new double[dim]);
+            for (int i = 0; i < dim; i++){
+                result.set(i, scalar * vector.get(i));
+            }
+
+            return result;
+        }
+
+        throw  new IllegalArgumentException("Escalar pode ser multiplicado apenas por Matrix e Vector");
+    }
+
 
     public static Matrix gauss(Matrix a){
         int rows = a.getRows();
