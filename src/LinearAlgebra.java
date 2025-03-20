@@ -80,4 +80,85 @@ public class LinearAlgebra {
     }
 
 
+    public static Matrix solve(Matrix a){
+        int rows = a.getRows();
+        int cols = a.getColumns();
+        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[rows * cols]);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                result.set(i, j, a.get(i, j));
+            }
+        }
+
+        int postExpandedMatrix = 0;
+        int postConciousMatrix = 0;
+        int n = 0;
+        Matrix scaleMatrix = LinearAlgebra.gauss(result);
+
+        for(int row = 0; row < rows; row++){
+            double sumRowExpaned = 0;
+            double sumRowConcious = 0;
+            for(int col = 0; col < cols; col++){
+
+                // soma as linhas da matriz ampliada
+                sumRowExpaned += scaleMatrix.get(row, col);
+
+                // soma as linhas da matriz dos concientes
+                if(col < (cols - 1)){
+                    sumRowConcious += scaleMatrix.get(row, col);
+                }
+
+                // conta a quantidade de incognitas
+                if(col == cols - 1){
+                    n++;
+                }
+            }
+
+            if(sumRowExpaned > 0){
+                postExpandedMatrix++;
+            }
+
+            if(sumRowConcious > 0){
+                postConciousMatrix++;
+            }
+        }
+
+
+        if(postConciousMatrix == postExpandedMatrix && postConciousMatrix < n ){
+            System.out.println("Sistema possui infinitas soluções");
+            return null;
+        } else if (postExpandedMatrix > postConciousMatrix) {
+            System.out.println("Sistema não possui solução");
+            return null;
+        }
+
+        for(int j = rows - 1; j >= 0; j--){
+
+            double pivot = scaleMatrix.get(j, j);
+            for (int c = 0; c < cols; c++) {
+                scaleMatrix.set(j, c, Math.abs(scaleMatrix.get(j, c) / pivot));
+            }
+
+
+
+            for(int i = rows - 1; i >= 0; i--){
+                if(scaleMatrix.get(i, j) == 0){
+                    continue;
+                }
+
+                if(i != j){
+                    double k = - scaleMatrix.get(i,j); // k = -A(i, j)
+                    for (int c = cols - 1; c > 0; c--){
+                        double elementLine = scaleMatrix.get(i, c);
+                        scaleMatrix.set(i, c, elementLine + k * scaleMatrix.get(j, c));
+                    }
+                }
+            }
+        }
+
+
+
+        return scaleMatrix;
+    }
+
 }
