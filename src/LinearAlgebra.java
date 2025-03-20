@@ -105,6 +105,33 @@ public class LinearAlgebra{
     }
 
 
+    public static Matrix dot(Matrix a, Matrix b){
+        int rowsA = a.getRows();
+        int colsA = a.getColumns();
+        int rowsB = b.getRows();
+        int colsB = b.getColumns();
+
+        if(colsA != rowsB){
+            throw new IllegalArgumentException("Multiplicação não pode ser realizada por conta das dimensões");
+        }
+
+        Matrix result = new Matrix(rowsA, colsB, new double[rowsA * colsB]);
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                double value = 0;
+                for (int t = 0; t < colsA; t++){
+                    value += a.get(i, t) * b.get(t, j);
+                }
+
+                result.set(i, j, value);
+            }
+        }
+
+
+        return result;
+    }
+
+
     public static Matrix gauss(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
