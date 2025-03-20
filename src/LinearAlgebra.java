@@ -197,11 +197,11 @@ public class LinearAlgebra{
             for(int col = 0; col < cols; col++){
 
                 // soma as linhas da matriz ampliada
-                sumRowExpaned += scaleMatrix.get(row, col);
+                sumRowExpaned += Math.abs(scaleMatrix.get(row, col));
 
                 // soma as linhas da matriz dos concientes
                 if(col < (cols - 1)){
-                    sumRowConcious += scaleMatrix.get(row, col);
+                    sumRowConcious += Math.abs(scaleMatrix.get(row, col));
                 }
 
                 // conta a quantidade de incognitas
