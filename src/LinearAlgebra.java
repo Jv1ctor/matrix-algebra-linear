@@ -25,19 +25,29 @@ public class LinearAlgebra{
 
     // Metodo para somar duas matrizes.
     public static Matrix sum(Matrix a, Matrix b) {
-        if (a.getRows() != b.getRows() || a.getColumns() != b.getColumns()) {
-            System.out.println("Erro: As matrizes devem ter as mesmas dimensões.");
-            return null; // Ou qualquer outro valor que indique erro
+        int rowsA = a.getRows();
+        int rowsB = b.getRows();
+        int colsA = a.getColumns();
+        int colsB = b.getColumns();
+
+        int lengthElements = rowsA * colsA;
+
+        if (rowsA != rowsB || colsA != colsB) {
+            throw new IllegalArgumentException("As matrizes devem ter as mesmas dimensões.");
         }
 
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[a.getRows() * a.getColumns()]);
+        Matrix result = new Matrix(rowsA, colsA, new double[lengthElements]);
 
         // Percorre cada elemento da matriz e soma os valores correspondentes
-        for (int i = 0; i < a.getRows(); i++) {
-            for (int j = 0; j < a.getColumns(); j++) {
-                result.set(i, j, a.get(i, j) + b.get(i, j));
-            }
+        for (int i = 0; i < lengthElements; i++) {
+            int indexCols = i % colsA;
+            int indexRows = i / colsA;
+
+            double elementsOfA = a.get(indexRows, indexCols);
+            double elementsOfB = b.get(indexRows, indexCols);
+            result.set(indexRows, indexCols, elementsOfA + elementsOfB );
         }
+
         return result;
     }
 
