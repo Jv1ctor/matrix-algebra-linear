@@ -126,22 +126,24 @@ public class LinearAlgebra{
         int rowsB = b.getRows();
         int colsB = b.getColumns();
 
+        int lengthElementsAofB = rowsA * colsB;
+
         if(colsA != rowsB){
             throw new IllegalArgumentException("Multiplicação não pode ser realizada por conta das dimensões");
         }
 
-        Matrix result = new Matrix(rowsA, colsB, new double[rowsA * colsB]);
-        for (int i = 0; i < rowsA; i++) {
-            for (int j = 0; j < colsB; j++) {
-                double value = 0;
-                for (int t = 0; t < colsA; t++){
-                    value += a.get(i, t) * b.get(t, j);
-                }
+        Matrix result = new Matrix(rowsA, colsB, new double[lengthElementsAofB]);
 
-                result.set(i, j, value);
-            }
+        for(int i = 0; i < rowsA * colsB; i++){
+           int indexRow = i / rowsA;
+           int indexCols = i % colsB;
+           double value = 0;
+           for (int j = 0; j < colsA; j++){
+                value += a.get(indexRow, j) * b.get(j, indexCols);
+           }
+
+           result.set(indexRow, indexCols, value);
         }
-
 
         return result;
     }
