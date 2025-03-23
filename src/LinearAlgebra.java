@@ -134,7 +134,7 @@ public class LinearAlgebra{
 
         Matrix result = new Matrix(rowsA, colsB, new double[lengthElementsAofB]);
 
-        for(int i = 0; i < rowsA * colsB; i++){
+        for(int i = 0; i < lengthElementsAofB; i++){
            int indexRow = i / rowsA;
            int indexCols = i % colsB;
            double value = 0;
