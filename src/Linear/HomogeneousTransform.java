@@ -1,27 +1,32 @@
+package Linear;
+
+import Matrices.Matrix;
+import Vectors.Vector;
+
 import java.util.Arrays;
 
 public interface HomogeneousTransform {
 
-     static Matrix toHomogeneousVector(Vector vector, double hElement){
-        double[] elements = vector.getElements();
-        double[] elementsHomogeneous = Arrays.copyOf(elements, elements.length + 1);
+     static Matrix toHomogeneousVector(Vector vector, float hElement){
+        float[] elements = vector.getElements();
+        float[] elementsHomogeneous = Arrays.copyOf(elements, elements.length + 1);
         elementsHomogeneous[elementsHomogeneous.length - 1] = hElement;
 
         return new Matrix(vector.getDim() + 1, 1, elementsHomogeneous);
     }
 
     static Vector fromHomogenousVector(Matrix matrix){
-        double[] elementsMatrixHomo = matrix.getElements();
-        double[] elementsVector = Arrays.copyOf(elementsMatrixHomo, elementsMatrixHomo.length - 1);
+        float[] elementsMatrixHomo = matrix.getElements();
+        float[] elementsVector = Arrays.copyOf(elementsMatrixHomo, elementsMatrixHomo.length - 1);
 
         return new Vector(matrix.getRows() - 1, elementsVector);
     }
 
 
-    static Matrix toHomogenousTransformLinear(Matrix matrixA){
+    static Matrix toHomogenousOperatorLinear(Matrix matrixA){
        int hRows = matrixA.getRows() + 1;
        int hColumns = matrixA.getColumns() + 1;
-       Matrix hMatrix = new Matrix(hRows, hColumns, new double[hRows * hColumns]);
+       Matrix hMatrix = new Matrix(hRows, hColumns, new float[hRows * hColumns]);
 
        for(int i = 0; i < hMatrix.getRows(); i++){
          for (int j = 0; j < hMatrix.getColumns(); j++){
@@ -37,7 +42,7 @@ public interface HomogeneousTransform {
 
     static Matrix toHomogenousOperatorLinear(Matrix matrixA, Vector vectorX){
         int hColumns = matrixA.getColumns() + 1;
-        Matrix hMatrix = toHomogenousTransformLinear(matrixA);
+        Matrix hMatrix = toHomogenousOperatorLinear(matrixA);
 
 
         for(int i = 0; i < vectorX.getDim(); i++){
