@@ -21,7 +21,7 @@ public class Matrix {
 
     public void set(int i, int j, double value){
         int index = i * columns + j;
-        this.elements[index] = value;
+        this.elements[index] = Math.round(value);
     }
 
     public int getRows() {
@@ -32,15 +32,19 @@ public class Matrix {
         return this.columns;
     }
 
-    public void show(){
+    public double[] getElements(){ return this.elements; }
 
+    @Override
+    public String toString(){
+        StringBuilder text = new StringBuilder();
         for(int i = 0; i < rows * columns; i ++){
             int indexCols = i % columns;
-            System.out.print(elements[i] + "  ");
-
+            text.append(elements[i]).append("  ");
             if(indexCols == columns - 1){
-                System.out.print("\n");
+                text.append("\n");
             }
         }
+
+        return text.toString();
     }
 }

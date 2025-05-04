@@ -119,46 +119,35 @@ public class LinearAlgebra{
         throw  new IllegalArgumentException("Escalar pode ser multiplicado apenas por Matrix e Vector");
     }
 
-
     public static Matrix dot(Matrix a, Matrix b){
         int rowsA = a.getRows();
         int colsA = a.getColumns();
         int rowsB = b.getRows();
         int colsB = b.getColumns();
 
-        int lengthElementsAofB = rowsA * colsB;
-
         if(colsA != rowsB){
             throw new IllegalArgumentException("Multiplicação não pode ser realizada por conta das dimensões");
         }
 
-        Matrix result = new Matrix(rowsA, colsB, new double[lengthElementsAofB]);
+        Matrix result = new Matrix(rowsA, colsB, new double[rowsA * colsB]);
+        for (int i = 0; i < rowsA; i++) {
+            for (int j = 0; j < colsB; j++) {
+                double value = 0;
+                for (int t = 0; t < colsA; t++){
+                    value += a.get(i, t) * b.get(t, j);
+                }
 
-        for(int i = 0; i < lengthElementsAofB; i++){
-           int indexRow = i / rowsA;
-           int indexCols = i % colsB;
-           double value = 0;
-           for (int j = 0; j < colsA; j++){
-                value += a.get(indexRow, j) * b.get(j, indexCols);
-           }
-
-           result.set(indexRow, indexCols, value);
+                result.set(i, j, value);
+            }
         }
-
         return result;
     }
-
 
     public static Matrix gauss(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[rows * cols]);
-        for (int i = 0; i < a.getRows(); i++) {
-            for (int j = 0; j < a.getColumns(); j++) {
-                result.set(i, j, a.get(i, j));
-            }
-        }
 
+        Matrix result = new Matrix(rows, cols, a.getElements());
 
         for (int j = 0; j < rows; j++) {
             int maxRow = j;
@@ -183,6 +172,7 @@ public class LinearAlgebra{
 
             for (int i = j + 1; i < rows; i++){
                 double k = - result.get(i,j) / result.get(j, j); // k = -A(i, j) / A(j, j)
+                result.set(i, j, 0);
                 for (int c = j; c < result.getColumns(); c++){
                     double elementLine = result.get(i, c);
                     result.set(i, c, elementLine + k * result.get(j, c));
@@ -196,12 +186,7 @@ public class LinearAlgebra{
     public static Matrix solve(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[rows * cols]);
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                result.set(i, j, a.get(i, j));
-            }
-        }
+        Matrix result = new Matrix(rows, cols,a.getElements());
 
         int postExpandedMatrix = 0;
         int postConciousMatrix = 0;
