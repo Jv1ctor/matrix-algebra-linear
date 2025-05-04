@@ -186,7 +186,7 @@ public class LinearAlgebra{
     public static Matrix solve(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
-        Matrix result = new Matrix(rows, cols,a.getElements());
+        Matrix result = new Matrix(rows, cols, a.getElements());
 
         int postExpandedMatrix = 0;
         int postConciousMatrix = 0;

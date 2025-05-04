@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class Matrix {
+public class Matrix implements MatrixIdentity{
     private int rows;
     private int columns;
     private double[] elements;
@@ -33,6 +33,10 @@ public class Matrix {
     }
 
     public double[] getElements(){ return this.elements; }
+
+    static Matrix identity(int rows, int cols){
+        return MatrixIdentity.generateIdentity(rows, cols);
+    }
 
     @Override
     public String toString(){

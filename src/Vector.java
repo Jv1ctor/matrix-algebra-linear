@@ -24,6 +24,8 @@ public class Vector {
         elements[i] = value;
     }
 
+    public double[] getElements(){ return elements; }
+
     @Override
     public String toString(){
         return Arrays.toString(elements);
