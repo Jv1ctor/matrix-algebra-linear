@@ -4,45 +4,24 @@ public class Matrix {
     private int rows;
     private int columns;
     private double[] elements;
-    private int indexElements = 0;
-    protected double[][] matrixElements;
 
     Matrix(int rows, int columns, double[] elements){
+        if(elements.length != (rows * columns)){
+            throw new IllegalArgumentException("Quantidade de elementos incompatível com as dimensões da matriz");
+        }
         this.rows = rows;
         this.columns = columns;
-        if(elements.length <= (rows * columns)){
-            this.elements = elements;
-        }else{
-            System.out.println(rows * columns);
-            System.out.println(elements.length);
-            throw new Error("Quantidade de elementos incompatível com as dimensões da matriz");
-        }
-
-        this.matrixElements = this.generateArrayMatrix();
+        this.elements = elements;
     }
-
-    private double[][] generateArrayMatrix(){
-        double[][] array = new double[this.rows][];
-        for(int i = 0; i < this.rows; i++){
-            double[] columnsElements = new double[this.columns];
-            for(int j = 0; j < this.columns; j++){
-                columnsElements[j] = elements[indexElements];
-                indexElements++;
-            }
-
-            array[i] = columnsElements;
-        }
-
-        return  array;
-    }
-
 
     public double get(int i, int j){
-        return this.matrixElements[i][j];
+        int index = i * columns + j;
+        return this.elements[index];
     }
 
     public void set(int i, int j, double value){
-        this.matrixElements[i][j] = value;
+        int index = i * columns + j;
+        this.elements[index] = Math.round(value);
     }
 
     public int getRows() {
@@ -53,15 +32,19 @@ public class Matrix {
         return this.columns;
     }
 
-    public void show(){
-        for(int i = 0; i < rows; i++){
-            for (int j= 0; j < columns; j++){
-                System.out.print(matrixElements[i][j] + "  ");
+    public double[] getElements(){ return this.elements; }
 
-                if(j == columns - 1){
-                    System.out.print("\n");
-                }
+    @Override
+    public String toString(){
+        StringBuilder text = new StringBuilder();
+        for(int i = 0; i < rows * columns; i ++){
+            int indexCols = i % columns;
+            text.append(elements[i]).append("  ");
+            if(indexCols == columns - 1){
+                text.append("\n");
             }
         }
+
+        return text.toString();
     }
 }

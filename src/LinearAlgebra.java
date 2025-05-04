@@ -2,14 +2,19 @@ public class LinearAlgebra{
 
     // Metodo para transpor uma matriz. A transposição troca as linhas pelas colunas.
     public static Matrix transpose(Matrix a) {
-        Matrix result = new Matrix(a.getColumns(), a.getRows(), new double [a.getColumns() * a.getRows()]);
+        int cols = a.getColumns();
+        int rows = a.getRows();
+        int elementsLength = cols * rows;
 
-        // Percorre a matriz e troca os índices para fazer a transposição
-        for (int i = 0; i < a.getRows(); i++) {
-            for (int j = 0; j < a.getColumns(); j++) {
-                result.set(j, i, a.get(i, j));
-            }
+        Matrix result = new Matrix(cols, rows, new double [elementsLength]);
+
+        for (int i = 0; i < elementsLength; i++){
+            int indexCols = i % cols;
+            int indexRows = i / cols;
+            double switchElement = a.get(indexRows, indexCols);
+            result.set(indexCols, indexRows, switchElement);
         }
+
         return result;
     }
 //
@@ -20,19 +25,29 @@ public class LinearAlgebra{
 
     // Metodo para somar duas matrizes.
     public static Matrix sum(Matrix a, Matrix b) {
-        if (a.getRows() != b.getRows() || a.getColumns() != b.getColumns()) {
-            System.out.println("Erro: As matrizes devem ter as mesmas dimensões.");
-            return null; // Ou qualquer outro valor que indique erro
+        int rowsA = a.getRows();
+        int rowsB = b.getRows();
+        int colsA = a.getColumns();
+        int colsB = b.getColumns();
+
+        int lengthElements = rowsA * colsA;
+
+        if (rowsA != rowsB || colsA != colsB) {
+            throw new IllegalArgumentException("As matrizes devem ter as mesmas dimensões.");
         }
 
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[a.getRows() * a.getColumns()]);
+        Matrix result = new Matrix(rowsA, colsA, new double[lengthElements]);
 
         // Percorre cada elemento da matriz e soma os valores correspondentes
-        for (int i = 0; i < a.getRows(); i++) {
-            for (int j = 0; j < a.getColumns(); j++) {
-                result.set(i, j, a.get(i, j) + b.get(i, j));
-            }
+        for (int i = 0; i < lengthElements; i++) {
+            int indexCols = i % colsA;
+            int indexRows = i / colsA;
+
+            double elementsOfA = a.get(indexRows, indexCols);
+            double elementsOfB = b.get(indexRows, indexCols);
+            result.set(indexRows, indexCols, elementsOfA + elementsOfB );
         }
+
         return result;
     }
 
@@ -104,7 +119,6 @@ public class LinearAlgebra{
         throw  new IllegalArgumentException("Escalar pode ser multiplicado apenas por Matrix e Vector");
     }
 
-
     public static Matrix dot(Matrix a, Matrix b){
         int rowsA = a.getRows();
         int colsA = a.getColumns();
@@ -126,22 +140,14 @@ public class LinearAlgebra{
                 result.set(i, j, value);
             }
         }
-
-
         return result;
     }
-
 
     public static Matrix gauss(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[rows * cols]);
-        for (int i = 0; i < a.getRows(); i++) {
-            for (int j = 0; j < a.getColumns(); j++) {
-                result.set(i, j, a.get(i, j));
-            }
-        }
 
+        Matrix result = new Matrix(rows, cols, a.getElements());
 
         for (int j = 0; j < rows; j++) {
             int maxRow = j;
@@ -166,6 +172,7 @@ public class LinearAlgebra{
 
             for (int i = j + 1; i < rows; i++){
                 double k = - result.get(i,j) / result.get(j, j); // k = -A(i, j) / A(j, j)
+                result.set(i, j, 0);
                 for (int c = j; c < result.getColumns(); c++){
                     double elementLine = result.get(i, c);
                     result.set(i, c, elementLine + k * result.get(j, c));
@@ -179,12 +186,7 @@ public class LinearAlgebra{
     public static Matrix solve(Matrix a){
         int rows = a.getRows();
         int cols = a.getColumns();
-        Matrix result = new Matrix(a.getRows(), a.getColumns(), new double[rows * cols]);
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                result.set(i, j, a.get(i, j));
-            }
-        }
+        Matrix result = new Matrix(rows, cols,a.getElements());
 
         int postExpandedMatrix = 0;
         int postConciousMatrix = 0;

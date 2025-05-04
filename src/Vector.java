@@ -24,7 +24,8 @@ public class Vector {
         elements[i] = value;
     }
 
-    public void show() {
-        System.out.println(Arrays.toString(elements));
-    } // esse método mostra o vetor completo
+    @Override
+    public String toString(){
+        return Arrays.toString(elements);
+    }
 }
