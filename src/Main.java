@@ -13,6 +13,8 @@ public class Main {
         Vector resultRotation2d = Rotation.rotation2D(vector2d, 90);
         Vector resultProjection2dX = Projection.projection2DX(vector2d);
         Vector resultProjection2dY = Projection.projection2DY(vector2d);
+        Vector resultReflection2dX = Reflection.reflection2DX(vector2d);
+        Vector resultReflection2dY = Reflection.reflection2DY(vector2d);
 
         Vector vector3d = new Vector(3, new float[]{1, 2, 3});
         System.out.println("Vetor 3d: " +"\n"+vector3d);
@@ -24,6 +26,9 @@ public class Main {
         Vector resultProjection3dXY = Projection.projection3DXY(vector3d);
         Vector resultProjection3dXZ = Projection.projection3DXZ(vector3d);
         Vector resultProjection3dYZ = Projection.projection3DYZ(vector3d);
+        Vector resultReflection3dXY = Reflection.reflection3DXY(vector3d);
+        Vector resultReflection3dXZ = Reflection.reflection3DXZ(vector3d);
+        Vector resultReflection3dYZ = Reflection.reflection3DYZ(vector3d);
 
         System.out.println("Translate 2D: " + resultTranslate2d);
         System.out.println("Translate 3D: " + resultTranslate3d);
@@ -36,6 +41,11 @@ public class Main {
         System.out.println("Projection 3DXY:" + resultProjection3dXY);
         System.out.println("Projection 3DXZ:" + resultProjection3dXZ);
         System.out.println("Projection 3DYZ:" + resultProjection3dYZ);
+        System.out.println("Reflection 2DX:" + resultReflection2dX);
+        System.out.println("Reflection 2DY:" + resultReflection2dY);
+        System.out.println("Reflection 3DXY:" + resultReflection3dXY);
+        System.out.println("Reflection 3DXZ:" + resultReflection3dXZ);
+        System.out.println("Reflection 3DYZ:" + resultReflection3dYZ);
     }
 
 
