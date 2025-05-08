@@ -1,6 +1,7 @@
-import Linear.Transforms.Reflection;
+import Linear.Transforms.Projection;
 import Linear.Transforms.Rotation;
 import Linear.Transforms.Translate;
+import Linear.Transforms.Reflection;
 import Matrices.Matrix;
 import Vectors.Vector;
 
@@ -11,6 +12,8 @@ public class Main {
 
         Vector resultTranslate2d = Translate.translate2D(vector2d, 5, 6);
         Vector resultRotation2d = Rotation.rotation2D(vector2d, 90);
+        Vector resultProjection2dX = Projection.projection2DX(vector2d);
+        Vector resultProjection2dY = Projection.projection2DY(vector2d);
         Vector resultReflection2dX = Reflection.reflection2DX(vector2d);
         Vector resultReflection2dY = Reflection.reflection2DY(vector2d);
 
@@ -21,6 +24,9 @@ public class Main {
         Vector resultRotation3dX = Rotation.rotation3DX(vector3d, 60);
         Vector resultRotation3dY = Rotation.rotation3DY(vector3d, 60);
         Vector resultRotation3dZ = Rotation.rotation3DZ(vector3d, 60);
+        Vector resultProjection3dXY = Projection.projection3DXY(vector3d);
+        Vector resultProjection3dXZ = Projection.projection3DXZ(vector3d);
+        Vector resultProjection3dYZ = Projection.projection3DYZ(vector3d);
         Vector resultReflection3dXY = Reflection.reflection3DXY(vector3d);
         Vector resultReflection3dXZ = Reflection.reflection3DXZ(vector3d);
         Vector resultReflection3dYZ = Reflection.reflection3DYZ(vector3d);
@@ -31,6 +37,11 @@ public class Main {
         System.out.println("Rotation 3DX:"+ resultRotation3dX);
         System.out.println("Rotation 3DY:"+ resultRotation3dY);
         System.out.println("Rotation 3DZ:"+ resultRotation3dZ);
+        System.out.println("Projection 2DX:" + resultProjection2dX);
+        System.out.println("Projection 2DY:" + resultProjection2dY);
+        System.out.println("Projection 3DXY:" + resultProjection3dXY);
+        System.out.println("Projection 3DXZ:" + resultProjection3dXZ);
+        System.out.println("Projection 3DYZ:" + resultProjection3dYZ);
         System.out.println("Reflection 2DX:" + resultReflection2dX);
         System.out.println("Reflection 2DY:" + resultReflection2dY);
         System.out.println("Reflection 3DXY:" + resultReflection3dXY);
