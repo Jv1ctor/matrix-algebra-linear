@@ -1,3 +1,4 @@
+import Linear.Transforms.Projection;
 import Linear.Transforms.Rotation;
 import Linear.Transforms.Translate;
 import Matrices.Matrix;
@@ -5,16 +6,24 @@ import Vectors.Vector;
 
 public class Main {
     public static void main(String[] args) {
-        Vector vector2d = new Vector(2, new float[]{1, 0});
+        Vector vector2d = new Vector(2, new float[]{1, 2});
+        System.out.println("Vetor 2d: " +"\n"+vector2d);
 
         Vector resultTranslate2d = Translate.translate2D(vector2d, 5, 6);
         Vector resultRotation2d = Rotation.rotation2D(vector2d, 90);
+        Vector resultProjection2dX = Projection.projection2DX(vector2d);
+        Vector resultProjection2dY = Projection.projection2DY(vector2d);
 
         Vector vector3d = new Vector(3, new float[]{1, 2, 3});
+        System.out.println("Vetor 3d: " +"\n"+vector3d);
+
         Vector resultTranslate3d = Translate.translate3D(vector3d, 5, 6, 7);
         Vector resultRotation3dX = Rotation.rotation3DX(vector3d, 60);
         Vector resultRotation3dY = Rotation.rotation3DY(vector3d, 60);
         Vector resultRotation3dZ = Rotation.rotation3DZ(vector3d, 60);
+        Vector resultProjection3dXY = Projection.projection3DXY(vector3d);
+        Vector resultProjection3dXZ = Projection.projection3DXZ(vector3d);
+        Vector resultProjection3dYZ = Projection.projection3DYZ(vector3d);
 
         System.out.println("Translate 2D: " + resultTranslate2d);
         System.out.println("Translate 3D: " + resultTranslate3d);
@@ -22,6 +31,11 @@ public class Main {
         System.out.println("Rotation 3DX:"+ resultRotation3dX);
         System.out.println("Rotation 3DY:"+ resultRotation3dY);
         System.out.println("Rotation 3DZ:"+ resultRotation3dZ);
+        System.out.println("Projection 2DX:" + resultProjection2dX);
+        System.out.println("Projection 2DY:" + resultProjection2dY);
+        System.out.println("Projection 3DXY:" + resultProjection3dXY);
+        System.out.println("Projection 3DXZ:" + resultProjection3dXZ);
+        System.out.println("Projection 3DYZ:" + resultProjection3dYZ);
     }
 
 
