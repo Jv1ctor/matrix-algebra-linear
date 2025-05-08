@@ -17,7 +17,7 @@ public final class Translate {
   }
 
   public static Vector translate2D(Vector vector, float dx, float dy){
-    Matrix identity = Matrix.identity(2, 2);
+    Matrix identity = Matrix.identity(2);
     Vector vectorOperator = new Vector(2, new float[]{dx, dy});
 
 
@@ -25,7 +25,7 @@ public final class Translate {
   }
 
   public static Vector translate3D(Vector vector, float dx, float dy, float dz){
-    Matrix identity = Matrix.identity(3, 3);
+    Matrix identity = Matrix.identity(3);
     Vector vectorOperator = new Vector(3, new float[]{dx, dy, dz});
 
     return translate(vector, vectorOperator, identity);

@@ -1,10 +1,10 @@
 package Matrices;
 
 public interface MatrixIdentity {
-   static Matrix generateIdentity(int row, int col){
-      Matrix matrix = new Matrix(row, col, new float[row * col]);
+   static Matrix generateIdentity(int dim){
+      Matrix matrix = new Matrix(dim, dim, new float[dim * dim]);
 
-      for(int i = 0; i < row; i++){
+      for(int i = 0; i < dim; i++){
         matrix.set(i, i, 1);
       }
 

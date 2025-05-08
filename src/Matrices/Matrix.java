@@ -34,8 +34,8 @@ public class Matrix implements MatrixIdentity {
 
     public float[] getElements(){ return this.elements; }
 
-    public static Matrix identity(int rows, int cols){
-        return MatrixIdentity.generateIdentity(rows, cols);
+    public static Matrix identity(int dim){
+        return MatrixIdentity.generateIdentity(dim);
     }
 
     @Override
