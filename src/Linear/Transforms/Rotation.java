@@ -9,11 +9,11 @@ public final class Rotation implements HomogeneousTransform {
 
   private static Vector rotation(Vector vector, Matrix operator){
     Matrix inputMatrix = HomogeneousTransform.toHomogeneousVector(vector, 1);
-    Matrix hRotationMatrix = HomogeneousTransform.toHomogenousOperatorLinear(operator);
+    Matrix hRotationMatrix = HomogeneousTransform.toHomogeneousOperatorLinear(operator);
 
     Matrix result = MatrixOperators.dot(hRotationMatrix, inputMatrix);
 
-    return HomogeneousTransform.fromHomogenousVector(result);
+    return HomogeneousTransform.fromHomogeneousVector(result);
   }
 
   public static Vector rotation2D(Vector vector, int angle){
@@ -50,7 +50,7 @@ public final class Rotation implements HomogeneousTransform {
     float[] elements = { (float)Math.cos(angleRad), (float)(-Math.sin(angleRad)), (float) Math.sin(angleRad), (float) Math.cos(angleRad) };
     Matrix rotationMatrix2d = new Matrix(2, 2, elements);
 
-    Matrix rotationMatrix3DZ = HomogeneousTransform.toHomogenousOperatorLinear(rotationMatrix2d);
+    Matrix rotationMatrix3DZ = HomogeneousTransform.toHomogeneousOperatorLinear(rotationMatrix2d);
 
     return rotation(vector, rotationMatrix3DZ);
   }

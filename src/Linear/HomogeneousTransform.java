@@ -15,7 +15,7 @@ public interface HomogeneousTransform {
         return new Matrix(vector.getDim() + 1, 1, elementsHomogeneous);
     }
 
-    static Vector fromHomogenousVector(Matrix matrix){
+    static Vector fromHomogeneousVector(Matrix matrix){
         float[] elementsMatrixHomo = matrix.getElements();
         float[] elementsVector = Arrays.copyOf(elementsMatrixHomo, elementsMatrixHomo.length - 1);
 
@@ -23,7 +23,7 @@ public interface HomogeneousTransform {
     }
 
 
-    static Matrix toHomogenousOperatorLinear(Matrix matrixA){
+    static Matrix toHomogeneousOperatorLinear(Matrix matrixA){
        int hRows = matrixA.getRows() + 1;
        int hColumns = matrixA.getColumns() + 1;
        Matrix hMatrix = new Matrix(hRows, hColumns, new float[hRows * hColumns]);
@@ -42,7 +42,7 @@ public interface HomogeneousTransform {
 
     static Matrix toHomogenousOperatorLinear(Matrix matrixA, Vector vectorX){
         int hColumns = matrixA.getColumns() + 1;
-        Matrix hMatrix = toHomogenousOperatorLinear(matrixA);
+        Matrix hMatrix = toHomogeneousOperatorLinear(matrixA);
 
 
         for(int i = 0; i < vectorX.getDim(); i++){

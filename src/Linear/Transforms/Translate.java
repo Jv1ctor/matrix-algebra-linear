@@ -13,7 +13,7 @@ public final class Translate {
     Matrix hTranslateMatrix = HomogeneousTransform.toHomogenousOperatorLinear(identity, vectorOperator);
     Matrix result = MatrixOperators.dot(hTranslateMatrix, inputMatrix);
 
-    return HomogeneousTransform.fromHomogenousVector(result);
+    return HomogeneousTransform.fromHomogeneousVector(result);
   }
 
   public static Vector translate2D(Vector vector, float dx, float dy){
