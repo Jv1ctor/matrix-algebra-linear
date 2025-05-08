@@ -1,11 +1,11 @@
-import java.util.Arrays;
+package Matrices;
 
-public class Matrix implements MatrixIdentity{
+public class Matrix implements MatrixIdentity {
     private int rows;
     private int columns;
-    private double[] elements;
+    private float[] elements;
 
-    Matrix(int rows, int columns, double[] elements){
+    public Matrix(int rows, int columns, float[] elements){
         if(elements.length != (rows * columns)){
             throw new IllegalArgumentException("Quantidade de elementos incompatível com as dimensões da matriz");
         }
@@ -14,14 +14,14 @@ public class Matrix implements MatrixIdentity{
         this.elements = elements;
     }
 
-    public double get(int i, int j){
+    public float get(int i, int j){
         int index = i * columns + j;
         return this.elements[index];
     }
 
-    public void set(int i, int j, double value){
+    public void set(int i, int j, float value){
         int index = i * columns + j;
-        this.elements[index] = Math.round(value);
+        this.elements[index] = Math.round(value * 1000.0f) / 1000.0f;
     }
 
     public int getRows() {
@@ -32,10 +32,10 @@ public class Matrix implements MatrixIdentity{
         return this.columns;
     }
 
-    public double[] getElements(){ return this.elements; }
+    public float[] getElements(){ return this.elements; }
 
-    static Matrix identity(int rows, int cols){
-        return MatrixIdentity.generateIdentity(rows, cols);
+    public static Matrix identity(int dim){
+        return MatrixIdentity.generateIdentity(dim);
     }
 
     @Override
