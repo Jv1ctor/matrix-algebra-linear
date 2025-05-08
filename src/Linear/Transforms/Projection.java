@@ -9,9 +9,9 @@ public class Projection {
 
   private static Vector projection(Vector vector, Matrix operator){
     Matrix inputMatrix = HomogeneousTransform.toHomogeneousVector(vector, 1);
-    Matrix hRotationMatrix = HomogeneousTransform.toHomogeneousOperatorLinear(operator);
+    Matrix hOperatorMatrix = HomogeneousTransform.toHomogeneousOperatorLinear(operator);
 
-    Matrix result = MatrixOperators.dot(hRotationMatrix, inputMatrix);
+    Matrix result = MatrixOperators.dot(hOperatorMatrix, inputMatrix);
 
     return HomogeneousTransform.fromHomogeneousVector(result);
   }
