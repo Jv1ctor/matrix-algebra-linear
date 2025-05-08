@@ -5,7 +5,7 @@ import Matrices.Matrix;
 import Matrices.MatrixOperators;
 import Vectors.Vector;
 
-public final class Rotation implements HomogeneousTransform {
+public final class Rotation {
 
   private static Vector rotation(Vector vector, Matrix operator){
     Matrix inputMatrix = HomogeneousTransform.toHomogeneousVector(vector, 1);

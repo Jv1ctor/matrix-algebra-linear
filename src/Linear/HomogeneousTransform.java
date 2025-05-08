@@ -5,9 +5,9 @@ import Vectors.Vector;
 
 import java.util.Arrays;
 
-public interface HomogeneousTransform {
+public class HomogeneousTransform {
 
-     static Matrix toHomogeneousVector(Vector vector, float hElement){
+     public static Matrix toHomogeneousVector(Vector vector, float hElement){
         float[] elements = vector.getElements();
         float[] elementsHomogeneous = Arrays.copyOf(elements, elements.length + 1);
         elementsHomogeneous[elementsHomogeneous.length - 1] = hElement;
@@ -15,7 +15,7 @@ public interface HomogeneousTransform {
         return new Matrix(vector.getDim() + 1, 1, elementsHomogeneous);
     }
 
-    static Vector fromHomogeneousVector(Matrix matrix){
+    public static Vector fromHomogeneousVector(Matrix matrix){
         float[] elementsMatrixHomo = matrix.getElements();
         float[] elementsVector = Arrays.copyOf(elementsMatrixHomo, elementsMatrixHomo.length - 1);
 
@@ -23,7 +23,7 @@ public interface HomogeneousTransform {
     }
 
 
-    static Matrix toHomogeneousOperatorLinear(Matrix matrixA){
+    public static Matrix toHomogeneousOperatorLinear(Matrix matrixA){
        int hRows = matrixA.getRows() + 1;
        int hColumns = matrixA.getColumns() + 1;
        Matrix hMatrix = new Matrix(hRows, hColumns, new float[hRows * hColumns]);
@@ -40,7 +40,7 @@ public interface HomogeneousTransform {
        return hMatrix;
     }
 
-    static Matrix toHomogenousOperatorLinear(Matrix matrixA, Vector vectorX){
+    public static Matrix toHomogenousOperatorLinear(Matrix matrixA, Vector vectorX){
         int hColumns = matrixA.getColumns() + 1;
         Matrix hMatrix = toHomogeneousOperatorLinear(matrixA);
 
