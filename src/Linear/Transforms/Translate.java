@@ -1,9 +1,9 @@
 package Linear.Transforms;
 
-import Linear.HomogeneousTransform;
-import Matrices.MatrixOperators;
-import Matrices.Matrix;
-import Vectors.Vector;
+import Linear.util.HomogeneousTransform;
+import Linear.Matrices.MatrixOperators;
+import Linear.Matrices.Matrix;
+import Linear.Vectors.Vector;
 
 public final class Translate {
 

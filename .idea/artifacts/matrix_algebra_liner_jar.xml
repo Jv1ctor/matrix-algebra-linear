@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="matrix-algebra-liner:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/matrix_algebra_liner_jar</output-path>
+    <root id="archive" name="matrix-algebra-liner.jar">
+      <element id="module-output" name="matrix-algebra-liner" />
+    </root>
+  </artifact>
+</component>

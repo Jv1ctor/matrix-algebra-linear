@@ -1,9 +1,9 @@
 package Linear.Transforms;
 
-import Linear.HomogeneousTransform;
-import Matrices.Matrix;
-import Matrices.MatrixOperators;
-import Vectors.Vector;
+import Linear.util.HomogeneousTransform;
+import Linear.Matrices.Matrix;
+import Linear.Matrices.MatrixOperators;
+import Linear.Vectors.Vector;
 
 public class Shearing {
 

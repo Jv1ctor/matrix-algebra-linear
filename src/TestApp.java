@@ -1,15 +1,14 @@
-import Linear.Transforms.Projection;
-import Linear.Transforms.Rotation;
-import Linear.Transforms.Shearing;
-import Linear.Transforms.Translate;
-import Linear.Transforms.Reflection;
-import Matrices.Matrix;
-import Vectors.Vector;
+import Linear.Matrices.MatrixOperators;
+import Linear.Transforms.*;
+import Linear.Vectors.Vector;
 
-public class Main {
+
+public class TestApp {
     public static void main(String[] args) {
         Vector vector2d = new Vector(2, new float[]{1, 2});
         System.out.println("Vetor 2d: " +"\n"+vector2d);
+
+        System.out.println(MatrixOperators.times(1.2f, vector2d));
 
         Vector resultTranslate2d = Translate.translate2D(vector2d, 5, 6);
         Vector resultRotation2d = Rotation.rotation2D(vector2d, 90);

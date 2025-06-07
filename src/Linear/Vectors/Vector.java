@@ -1,4 +1,4 @@
-package Vectors;
+package Linear.Vectors;
 
 import java.util.Arrays;
 public class Vector {

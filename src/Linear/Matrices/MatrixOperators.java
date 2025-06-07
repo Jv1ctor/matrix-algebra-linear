@@ -1,6 +1,6 @@
-package Matrices;
+package Linear.Matrices;
 
-import Vectors.Vector;
+import Linear.Vectors.Vector;
 
 public class MatrixOperators{
 
@@ -22,8 +22,8 @@ public class MatrixOperators{
         return result;
     }
 //
-//    public static Vectors.Vector transpose(Vectors.Vector a) {
-//        return new Vectors.Vector(a.getDim(), a.getElements());
+//    public static Linear.Vectors.Vector transpose(Linear.Vectors.Vector a) {
+//        return new Linear.Vectors.Vector(a.getDim(), a.getElements());
 //    }
 //
 
@@ -60,7 +60,7 @@ public class MatrixOperators{
     public static Object times(Object a, Object b){
         return switch (a) {
             case Matrix matrix when b instanceof Matrix -> timesMatrixMatrix(matrix, (Matrix) b);
-            case float v -> timesScalar((float) a, b);
+            case Float v -> timesScalar(v, b);
             case Vector vector when b instanceof Vector -> timesVectorVector(vector, (Vector) b);
             case null, default -> throw new IllegalArgumentException("Tipos incompativeis para multiplicação");
         };
@@ -120,7 +120,7 @@ public class MatrixOperators{
             return result;
         }
 
-        throw  new IllegalArgumentException("Escalar pode ser multiplicado apenas por Matrix.Matrix e Vectors.Vector");
+        throw  new IllegalArgumentException("Escalar pode ser multiplicado apenas por Matrix.Matrix e Linear.Vectors.Vector");
     }
 
     public static Matrix dot(Matrix a, Matrix b){

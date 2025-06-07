@@ -1,4 +1,6 @@
-package Matrices;
+package Linear.util;
+
+import Linear.Matrices.Matrix;
 
 public interface MatrixIdentity {
    static Matrix generateIdentity(int dim){

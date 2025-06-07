@@ -1,7 +1,7 @@
-package Linear;
+package Linear.util;
 
-import Matrices.Matrix;
-import Vectors.Vector;
+import Linear.Matrices.Matrix;
+import Linear.Vectors.Vector;
 
 import java.util.Arrays;
 

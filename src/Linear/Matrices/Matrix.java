@@ -1,4 +1,6 @@
-package Matrices;
+package Linear.Matrices;
+
+import Linear.util.MatrixIdentity;
 
 public class Matrix implements MatrixIdentity {
     private int rows;
